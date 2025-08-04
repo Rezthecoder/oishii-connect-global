@@ -9,6 +9,7 @@ import Location from '@/components/Location';
 import News from '@/components/News';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
+import LiquidGlass from '@/components/LiquidGlass';
 
 const Index = () => {
   return (
@@ -25,6 +26,7 @@ const Index = () => {
         <Contact />
       </main>
       <Footer />
+      <LiquidGlass width={300} height={200} />
     </div>
   );
 };
