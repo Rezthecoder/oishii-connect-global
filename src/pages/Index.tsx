@@ -15,12 +15,11 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       <Header />
+       <LiquidGlass width={300} height={200} />
       <main>
         <Hero />
-         <LiquidGlass width={300} height={200} />
         <About />
         <Menu />
-       
         <Gallery />
         <Staff />
         <Location />
