@@ -13,13 +13,13 @@ import LiquidGlass from '@/components/LiquidGlass';
 
 const Index = () => {
   return (
-    <div className="min-h-screen">
-      <Header />
-      
-      {/* Centered LiquidGlass */}
-      <div className="flex items-center justify-center py-16">
+    <div className="min-h-screen relative">
+      {/* Absolutely centered LiquidGlass outside the main flow */}
+      <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 pointer-events-none">
         <LiquidGlass width={300} height={200} />
       </div>
+
+      <Header />
 
       <main>
         <Hero />
@@ -31,7 +31,7 @@ const Index = () => {
         <News />
         <Contact />
       </main>
-      
+
       <Footer />
     </div>
   );
