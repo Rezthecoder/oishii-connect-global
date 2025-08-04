@@ -17,9 +17,10 @@ const Index = () => {
       <Header />
       <main>
         <Hero />
+         <LiquidGlass width={300} height={200} />
         <About />
         <Menu />
-        <LiquidGlass width={300} height={200} />
+       
         <Gallery />
         <Staff />
         <Location />
