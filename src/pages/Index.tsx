@@ -19,6 +19,7 @@ const Index = () => {
         <Hero />
         <About />
         <Menu />
+        <LiquidGlass width={300} height={200} />
         <Gallery />
         <Staff />
         <Location />
@@ -26,7 +27,6 @@ const Index = () => {
         <Contact />
       </main>
       <Footer />
-      <LiquidGlass width={300} height={200} />
     </div>
   );
 };
