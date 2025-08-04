@@ -18,9 +18,7 @@ const Index = () => {
       <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 pointer-events-none">
         <LiquidGlass width={300} height={200} />
       </div>
-
       <Header />
-
       <main>
         <Hero />
         <About />
@@ -31,7 +29,6 @@ const Index = () => {
         <News />
         <Contact />
       </main>
-
       <Footer />
     </div>
   );
