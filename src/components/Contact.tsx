@@ -6,7 +6,6 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
-import { supabase } from '@/integrations/supabase/client';
 
 const Contact = () => {
   const { t } = useLanguage();
@@ -19,51 +18,26 @@ const Contact = () => {
     message: ''
   });
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    try {
-      const { data, error } = await supabase.functions.invoke('send-contact-email', {
-        body: {
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          address: formData.address,
-          message: formData.message
-        }
-      });
-
-      if (error) {
-        throw error;
-      }
-
-      toast({
-        title: "Message Sent!",
-        description: "Thank you for contacting us. We'll get back to you soon.",
-      });
-      
-      // Reset form
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        address: '',
-        message: ''
-      });
-    } catch (error) {
-      console.error('Error sending email:', error);
-      toast({
-        title: "Error",
-        description: "Failed to send message. Please try again.",
-        variant: "destructive",
-      });
-    }
-  };
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
+    });
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    toast({
+      title: "Message Sent!",
+      description: "Thank you for contacting us. We'll get back to you soon.",
+    });
+
+    setFormData({
+      name: '',
+      email: '',
+      phone: '',
+      address: '',
+      message: ''
     });
   };
 
@@ -83,7 +57,18 @@ const Contact = () => {
 
           <Card className="shadow-card-hover">
             <CardContent className="p-8">
-              <form onSubmit={handleSubmit} className="space-y-6" name="contact" netlify>
+              <form
+                name="contact"
+                method="POST"
+                data-netlify="true"
+                netlify-honeypot="bot-field"
+                onSubmit={handleSubmit}
+                className="space-y-6"
+              >
+                {/* Hidden input for Netlify */}
+                <input type="hidden" name="form-name" value="contact" />
+                <input type="hidden" name="bot-field" />
+
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <Label htmlFor="name">{t('name')} *</Label>
@@ -93,7 +78,6 @@ const Contact = () => {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="transition-all duration-300 focus:shadow-sm"
                     />
                   </div>
                   <div className="space-y-2">
@@ -105,7 +89,6 @@ const Contact = () => {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="transition-all duration-300 focus:shadow-sm"
                     />
                   </div>
                 </div>
@@ -119,7 +102,6 @@ const Contact = () => {
                       type="tel"
                       value={formData.phone}
                       onChange={handleChange}
-                      className="transition-all duration-300 focus:shadow-sm"
                     />
                   </div>
                   <div className="space-y-2">
@@ -129,7 +111,6 @@ const Contact = () => {
                       name="address"
                       value={formData.address}
                       onChange={handleChange}
-                      className="transition-all duration-300 focus:shadow-sm"
                     />
                   </div>
                 </div>
@@ -143,7 +124,7 @@ const Contact = () => {
                     onChange={handleChange}
                     required
                     rows={5}
-                    className="transition-all duration-300 focus:shadow-sm resize-none"
+                    className="resize-none"
                     placeholder="Please let us know how we can help you..."
                   />
                 </div>
