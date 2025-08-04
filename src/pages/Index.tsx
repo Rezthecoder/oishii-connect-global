@@ -15,7 +15,12 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       <Header />
-       <LiquidGlass width={300} height={200} />
+      
+      {/* Centered LiquidGlass */}
+      <div className="flex items-center justify-center py-16">
+        <LiquidGlass width={300} height={200} />
+      </div>
+
       <main>
         <Hero />
         <About />
@@ -26,6 +31,7 @@ const Index = () => {
         <News />
         <Contact />
       </main>
+      
       <Footer />
     </div>
   );
