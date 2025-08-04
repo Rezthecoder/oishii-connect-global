@@ -83,7 +83,7 @@ const Contact = () => {
 
           <Card className="shadow-card-hover">
             <CardContent className="p-8">
-              <form onSubmit={handleSubmit} className="space-y-6 name="contact" netlify>
+              <form onSubmit={handleSubmit} className="space-y-6" name="contact" netlify>
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <Label htmlFor="name">{t('name')} *</Label>
